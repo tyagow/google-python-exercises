@@ -17,13 +17,16 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
-    if len(s) >= 3:
-        if s[-3:] == 'ing':
-            return s + 'ly'
-        else:
-            return s + 'ing'
-    else:
-        return s
+
+	return (s + 'ly' if (s[-3:] == 'ing') else s + 'ing') if (len(s) >= 3) else s
+    #
+    # if len(s) >= 3:
+    #     if s[-3:] == 'ing':
+    #         return s + 'ly'
+    #     else:
+    #         return s + 'ing'
+    # else:
+    #     return s
 
 
 # E. not_bad
@@ -37,9 +40,7 @@ def verbing(s):
 def not_bad(s):
     indice_not = s.find("not")
     indice_bad = s.find('bad')
-    if indice_not < indice_bad:
-        s = s[:indice_not] + "good" + s[indice_bad+3:] # + 3 para pular o bad
-    return s
+    return (s[:indice_not] + "good" + s[indice_bad+3:]) if indice_not < indice_bad else s
 
 
 # F. front_back
@@ -51,14 +52,8 @@ def not_bad(s):
 #  a-front + b-front + a-back + b-back
 def split_string_half(string):
 
-    if len(string)% 2 == 0:
-        front = len(string) / 2
-        back = len(string) / 2
-    else:
-        front = ((len(string) / 2) + 1)
-        back = (len(string) / 2) + 1
-
-    return string[:front], string[back:]
+    index = int(len(string) / 2) if (len(string)% 2 == 0) else (int(len(string) / 2) +1)
+    return string[:int(index)], string[int(index):]
 
 
 def front_back(a, b):
